@@ -5,6 +5,8 @@ new Vue({
             image:null,
             extractedText:null,
             loading: false,
+            wordCount: 0,
+            charCount: 0,
         };
     },
     methods:{
@@ -16,6 +18,7 @@ new Vue({
             reader.onload=()=>{
                 this.image=reader.result;
             };
+            this.charCount=0;
         },
         extractText(){
             debugger;
@@ -32,5 +35,13 @@ new Vue({
                 this.loading = false;
             });
         },
+        calculateWordCount(){
+            debugger;
+            const words = this.extractedText.toLowerCase().split(/[ ,\s\n.]+/).filter(Boolean);; // Split by whitespace /\s+/     /[ ,]+/
+            this.wordCount = words.length;
+            words.forEach(element => {
+                this.charCount += element.length;
+            });
+        }
     },
 });
