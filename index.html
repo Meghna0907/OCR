@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/2.1.4/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Ocr word count</title>
 </head>
 <body>
@@ -34,6 +35,11 @@
            <h2>Statistics</h2>
            <pre>Total Word Count: {{ wordCount }}</pre>
            <pre>Total Character Count: {{ charCount }}</pre>
+       </div>
+       <div v-if="wordCount">
+            <button class="btn" @click="createChart" >Visualize</button><br>
+            <h2 v-if="showChartHeader">Word Count Chart</h2>
+            <canvas id="myChart"></canvas>
        </div>
     </div>
     <script src="app.js"></script>
