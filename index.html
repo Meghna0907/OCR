@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/2.1.4/tesseract.min.js"></script>
+    <title>Ocr word count</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Extract Text from Image</h1>
+        <div class="upload-btn-wrapper">
+          <button class="btn">Upload Image</button>
+          <input type="file" @change="loadImage" accept="image/*">
+        </div>
+        <div v-if="image">
+          <img :src="image">
+          <button class="btn" @click="extractText">Extract Text</button>
+        </div>
+        <div v-if="loading">
+          <h2>Loading...<span class="loader"></span></h2>
+        </div>
+        <div v-if="extractedText">
+          <h2>Extracted Text</h2>
+          <pre>{{ extractedText }}</pre>
+       </div>
+       <div v-if="extractedText">
+          <button class="btn" @click="calculateWordCount" >Show Statistics</button>
+       </div>
+       <div v-if="wordCount">
+           <h2>Statistics</h2>
+           <pre>Total Word Count: {{ wordCount }}</pre>
+           <pre>Total Character Count: {{ charCount }}</pre>
+       </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
